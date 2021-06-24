@@ -17,7 +17,26 @@
 
 	</body>
 	<script type="text/javascript">
-	
+		var ewm_app = "img/android_ewm.png";//app下载二维码地址
+	    var xiaz_app = "https://apps.apple.com/cn/app/%E6%8A%BD%E7%AD%BE%E5%99%A8/id1572410510";//app下载地址
+	    function judgeClient(){
+		    let u = navigator.userAgent;
+		    let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;   //判断是否是 android终端
+		    let isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);     //判断是否是 iOS终端
+		    if(isAndroid){
+		      xiaz_app = "https://86-1253252641.cos.ap-chengdu.myqcloud.com/app-release_112.apk";	
+		      ewm_app = "img/android_ewm.png";
+		      return 'Android';
+		    }else if(isIOS){
+		      ewm_app = "img/android_ewm.png";
+		      xiaz_app = "https://apps.apple.com/cn/app/%E6%8A%BD%E7%AD%BE%E5%99%A8/id1572410510";	
+		      return 'IOS';
+		    }else{
+		      ewm_app = "img/android_ewm.png";	
+		      xiaz_app = "https://apps.apple.com/cn/app/%E6%8A%BD%E7%AD%BE%E5%99%A8/id1572410510";	
+		      return 'PC';
+		    }
+        }
 		var logo_app = "img/logo.png";//appLogo
 		var title_app = "点点视频";//app名称
 		var shouji_app = "img/app_sp.jpg";//电脑端app图片展示
@@ -26,11 +45,10 @@
 		var guanwang_app = "永久官网：ddvideo.live";//官网提示信息
 		var tishi_app = " ";//手机提示信息
 		var dibu_app = "";//底部版权信息
-		var ewm_app = "img/ewm.png";//app下载二维码地址
-		var xiaz_app = "https://86-1253252641.cos.ap-chengdu.myqcloud.com/app-release_112.apk";//app下载地址
 		var text_app = "";//app介绍
 
-				var win_width = $(window).width();
+		var win_width = $(window).width();
+		judgeClient();
 		win_app();
 		function win_app(){
 			win_width = $(window).width();
